@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🍇 Vitis
+#  Vitis
 
 **Sua Adega, Sua Escolha.**
 
@@ -16,32 +16,32 @@ Um aplicativo mobile web premium inspirado no Vivino para descoberta e compra de
 
 ---
 
-## ✨ Funcionalidades
+##  Funcionalidades
 
-### 🔐 Autenticação e Segurança
+###  Autenticação e Segurança
 - **Login Multi-Provedor** — Entre com **Google**, **Apple**, **Facebook** ou **E-mail/Senha** via Firebase Auth
 - **Modo Convidado** — Navegue pelo catálogo anonimamente; o login só é exigido ao adicionar itens ao carrinho ou realizar uma compra
 - **Upgrade de Conta Anônima para Real** — Converta uma sessão de convidado em uma conta permanente sem perder dados
 - **Regras de Segurança do Firestore** — Isolamento estrito por usuário para carrinho, adega, pedidos e dados de perfil
 
-### 🛒 Carrinho de Compras e Checkout Seguro
+###  Carrinho de Compras e Checkout Seguro
 - **Sincronização em Tempo Real** — Os itens do carrinho são persistidos no Firestore (por usuário) com fallback para `localStorage` em caso de falha de conexão
 - **Pagamento via Pix** — Geração dinâmica de QR Code com timer regressivo de 10 minutos e chave "Copia e Cola" para clipboard
 - **Pagamento via Cartão de Crédito** — Formulário premium com detecção automática de bandeira (Visa, Mastercard, Amex), máscara de input e pré-visualização animada do cartão
 - **Arquitetura PCI-DSS e LGPD** — Validação local de dados sensíveis e arquitetura preparada para integração com gateways reais (Stripe, Mercado Pago)
 
-### 🍷 Catálogo de Vinhos
+###  Catálogo de Vinhos
 - **25 Vinhos Reais** — Base de dados curada com rótulos renomados como *Catena Zapata, Pêra-Manca, Veuve Clicquot, Whispering Angel, Brunello di Montalcino* e muitos outros
 - **Páginas Detalhadas** — Notas de degustação, perfil de sabor, sugestões de harmonização, avaliações da comunidade e preços reais em R$
 - **Busca Inteligente e Filtros** — Filtre por tipo de vinho (Tinto, Branco, Rosé, Espumante) com pesquisa por nome, produtor e variedade de uva
 
-### 📱 UI Premium Mobile-First
+###  UI Premium Mobile-First
 - **Estética Escura de Vinhos** — Paleta de cores HSL profundas e saturadas com glassmorphism e texturas sutis de grão
 - **Interface de Escaneamento** — Viewfinder estilo câmera com linha de scan animada para reconhecimento de rótulos
 - **Micro-Animações** — Transições suaves, efeitos de hover e feedback interativo em todos os pontos de contato
 - **Navegação por Abas (Tab Bar)** — Navegação inferior com visual nativo e botão central de scan destacado
 
-### 🏆 Gamificação e Adega Pessoal
+###  Gamificação e Adega Pessoal
 - **Adega Pessoal** — Salve vinhos na sua coleção com sincronização em tempo real via Firestore
 - **Estatísticas Dinâmicas** — Tipo de vinho favorito, região principal e nota média calculados automaticamente
 - **Conquistas e Badges** — Desbloqueie badges como *Explorador*, *Sommelier*, *Crítico* e *Colecionador* com base no tamanho da sua adega
@@ -49,7 +49,7 @@ Um aplicativo mobile web premium inspirado no Vivino para descoberta e compra de
 
 ---
 
-## 🏗️ Stack Tecnológica
+##  Stack Tecnológica
 
 | Camada | Tecnologia |
 |---|---|
@@ -64,7 +64,7 @@ Um aplicativo mobile web premium inspirado no Vivino para descoberta e compra de
 
 ---
 
-## 🚀 Como Começar
+##  Como Começar
 
 ### Pré-requisitos
 - **Node.js** ≥ 20 (≥ 22 recomendado)
@@ -108,7 +108,7 @@ Com o app rodando e estando logado:
 
 ---
 
-## 📁 Estrutura do Projeto
+##  Estrutura do Projeto
 
 ```
 src/
@@ -144,7 +144,7 @@ src/
 
 ---
 
-## 🔒 Regras de Segurança do Firestore
+##  Regras de Segurança do Firestore
 
 O app inclui regras de segurança prontas para produção em [`firestore.rules`](firestore.rules):
 
@@ -155,7 +155,7 @@ O app inclui regras de segurança prontas para produção em [`firestore.rules`]
 
 ---
 
-## 🛣️ Rotas Disponíveis
+##  Rotas Disponíveis
 
 | Rota | Descrição |
 |---|---|
@@ -172,7 +172,7 @@ O app inclui regras de segurança prontas para produção em [`firestore.rules`]
 
 ---
 
-## 📜 Scripts Disponíveis
+##  Scripts Disponíveis
 
 ```bash
 npm run dev       # Iniciar servidor de desenvolvimento
@@ -184,7 +184,7 @@ npm run format    # Executar Prettier
 
 ---
 
-## 🤝 Contribuindo
+##  Contribuindo
 
 1. Faça um fork do repositório
 2. Crie sua branch de feature (`git checkout -b feature/funcionalidade-incrivel`)
@@ -194,7 +194,7 @@ npm run format    # Executar Prettier
 
 ---
 
-## 📄 Licença
+##  Licença
 
 Este projeto é open source e está disponível sob a [Licença MIT](LICENSE).
 
@@ -202,6 +202,6 @@ Este projeto é open source e está disponível sob a [Licença MIT](LICENSE).
 
 <div align="center">
 
-**Construído com ❤️ e 🍷 por [Guilherme Karnopp](https://github.com/GUILHERMEKARNOPP)**
+**Construído com vontade e vinho muito vinho kkkk por [Guilherme Karnopp](https://github.com/GUILHERMEKARNOPP)**
 
 </div>
