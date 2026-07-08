@@ -1,0 +1,111 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-wine: var(--wine);
+  --color-wine-deep: var(--wine-deep);
+  --color-gold: var(--gold);
+  --color-cream: var(--cream);
+  --font-display: "Cormorant Garamond", "Playfair Display", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 1rem;
+  /* Warm cream background inspired by Tuscan cellar */
+  --background: oklch(0.97 0.012 75);
+  --foreground: oklch(0.22 0.04 30);
+  --card: oklch(0.99 0.006 75);
+  --card-foreground: oklch(0.22 0.04 30);
+  --popover: oklch(0.99 0.006 75);
+  --popover-foreground: oklch(0.22 0.04 30);
+  /* Deep bordeaux */
+  --primary: oklch(0.35 0.12 20);
+  --primary-foreground: oklch(0.97 0.012 75);
+  --secondary: oklch(0.93 0.02 60);
+  --secondary-foreground: oklch(0.25 0.05 30);
+  --muted: oklch(0.94 0.015 65);
+  --muted-foreground: oklch(0.48 0.03 40);
+  --accent: oklch(0.72 0.12 55);
+  --accent-foreground: oklch(0.22 0.04 30);
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(0.98 0.003 75);
+  --border: oklch(0.88 0.02 60);
+  --input: oklch(0.88 0.02 60);
+  --ring: oklch(0.35 0.12 20);
+  /* Custom wine tokens */
+  --wine: oklch(0.35 0.12 20);
+  --wine-deep: oklch(0.24 0.09 20);
+  --gold: oklch(0.72 0.12 75);
+  --cream: oklch(0.97 0.012 75);
+}
+
+.dark {
+  --background: oklch(0.16 0.02 30);
+  --foreground: oklch(0.95 0.012 75);
+  --card: oklch(0.22 0.03 30);
+  --card-foreground: oklch(0.95 0.012 75);
+  --popover: oklch(0.22 0.03 30);
+  --popover-foreground: oklch(0.95 0.012 75);
+  --primary: oklch(0.55 0.18 20);
+  --primary-foreground: oklch(0.98 0.003 75);
+  --secondary: oklch(0.28 0.03 30);
+  --secondary-foreground: oklch(0.95 0.012 75);
+  --muted: oklch(0.28 0.03 30);
+  --muted-foreground: oklch(0.7 0.02 60);
+  --accent: oklch(0.6 0.14 55);
+  --accent-foreground: oklch(0.15 0.02 30);
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(0.98 0.003 75);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.55 0.18 20);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3, .font-display { font-family: var(--font-display); }
+}
+
+/* App shell — center on desktop for a phone-style preview */
+@utility app-shell {
+  max-width: 28rem;
+  margin-inline: auto;
+  min-height: 100vh;
+  background: var(--color-background);
+  position: relative;
+  padding-bottom: 5rem;
+}
