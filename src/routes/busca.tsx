@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Search, SlidersHorizontal, Star } from "lucide-react";
 import { useState } from "react";
 import { AppShell } from "@/components/AppShell";
-import { wines, type WineType } from "@/lib/wines";
+import { type WineType } from "@/lib/wines";
+import { useWines } from "@/hooks/useWines";
 
 export const Route = createFileRoute("/busca")({
   head: () => ({
@@ -16,6 +17,7 @@ const tipos: (WineType | "Todos")[] = ["Todos", "Tinto", "Branco", "Rosé", "Esp
 function BuscaPage() {
   const [q, setQ] = useState("");
   const [tipo, setTipo] = useState<(typeof tipos)[number]>("Todos");
+  const { wines, loading } = useWines();
 
   const filtered = wines.filter((w) => {
     const matchesQ =
@@ -26,6 +28,16 @@ function BuscaPage() {
     const matchesT = tipo === "Todos" || w.tipo === tipo;
     return matchesQ && matchesT;
   });
+
+  if (loading) {
+    return (
+      <AppShell>
+        <div className="flex h-[80vh] items-center justify-center">
+          <span className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+        </div>
+      </AppShell>
+    );
+  }
 
   return (
     <AppShell>

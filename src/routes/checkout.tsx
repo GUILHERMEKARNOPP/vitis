@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { useCart } from "@/hooks/useCart";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 export const Route = createFileRoute("/checkout")({
   head: () => ({
@@ -127,6 +129,28 @@ function CheckoutPage() {
 
     // Simulação do Gateway de pagamento seguro (Stripe/Mercado Pago)
     setTimeout(async () => {
+      if (user) {
+        try {
+          const itemsSummary = cartItems.map((item) => ({
+            wineId: item.wineId,
+            nome: item.wine.nome,
+            preco: item.wine.preco,
+            quantity: item.quantity,
+            imagem: item.wine.imagem,
+          }));
+
+          await addDoc(collection(db, "users", user.uid, "orders"), {
+            items: itemsSummary,
+            total: totalGeral,
+            paymentMethod: paymentMethod,
+            status: "Aprovado",
+            createdAt: new Date().toISOString(),
+          });
+        } catch (e) {
+          console.error("Erro ao registrar pedido no Firestore:", e);
+        }
+      }
+
       await clearCart();
       setIsProcessing(false);
       setIsFinished(true);

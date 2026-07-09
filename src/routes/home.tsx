@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ScanLine, Star, ChevronRight, Bell, ShoppingBag } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
-import { wines, regioes } from "@/lib/wines";
+import { regioes } from "@/lib/wines";
 import { useCart } from "@/hooks/useCart";
+import { useWines } from "@/hooks/useWines";
 
 export const Route = createFileRoute("/home")({
   head: () => ({
@@ -16,6 +17,18 @@ export const Route = createFileRoute("/home")({
 
 function HomePage() {
   const { cartCount } = useCart();
+  const { wines, loading } = useWines();
+
+  if (loading) {
+    return (
+      <AppShell>
+        <div className="flex h-[80vh] items-center justify-center">
+          <span className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+        </div>
+      </AppShell>
+    );
+  }
+
   const recomendados = wines.slice(0, 3);
   const tendencias = wines.slice(2, 6);
 

@@ -13,9 +13,7 @@ export const Route = createFileRoute("/vinho/$id")({
     meta: [{ title: `${params.id} — Vitis` }],
   }),
   loader: ({ params }) => {
-    const wine = getWine(params.id);
-    if (!wine) throw notFound();
-    return { wine };
+    return { id: params.id };
   },
   component: WineDetail,
   notFoundComponent: () => (
@@ -48,26 +46,62 @@ const harmonizationIcons: Record<string, typeof Beef> = {
 };
 
 function WineDetail() {
-  const { wine } = Route.useLoaderData();
+  const { id } = Route.useLoaderData();
   const { user } = useAuth();
   const { addToCart } = useCart();
   const navigate = useNavigate();
 
+  const [wine, setWine] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
   const [isSaved, setIsSaved] = useState(false);
+
+  useEffect(() => {
+    const docRef = doc(db, "wines", id);
+    const unsubscribe = onSnapshot(docRef, (docSnap) => {
+      if (docSnap.exists()) {
+        setWine(docSnap.data());
+      } else {
+        setWine(getWine(id));
+      }
+      setLoading(false);
+    }, (error) => {
+      console.warn("Erro ao buscar vinho no Firestore, usando estático:", error);
+      setWine(getWine(id));
+      setLoading(false);
+    });
+    return () => unsubscribe();
+  }, [id]);
 
   useEffect(() => {
     if (!user) {
       setIsSaved(false);
       return;
     }
-    const docRef = doc(db, "users", user.uid, "cellar", wine.id);
+    const docRef = doc(db, "users", user.uid, "cellar", id);
     const unsubscribe = onSnapshot(docRef, (docSnap) => {
       setIsSaved(docSnap.exists());
     }, (error) => {
       console.warn("Erro ao ler adega do Firestore:", error);
     });
     return () => unsubscribe();
-  }, [user, wine.id]);
+  }, [user, id]);
+
+  if (loading) {
+    return (
+      <div className="flex h-screen items-center justify-center bg-background">
+        <span className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+      </div>
+    );
+  }
+
+  if (!wine) {
+    return (
+      <div className="app-shell p-8 text-center">
+        <p className="mt-20 text-muted-foreground">Vinho não encontrado.</p>
+        <Link to="/home" className="mt-4 inline-block text-primary underline">Voltar</Link>
+      </div>
+    );
+  }
 
   const handleToggleCellar = async () => {
     if (!user) {
